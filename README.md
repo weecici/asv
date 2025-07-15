@@ -32,13 +32,7 @@ A modern web-based user interface for detecting voice spoofing using two powerfu
 
 2. **Run the UI:**
    ```bash
-   python main.py
-   ```
-   
-   Or manually:
-   ```bash
-   cd src
-   streamlit run app.py
+   uv run main.py
    ```
 
 3. **Open your browser** to `http://localhost:8501`
