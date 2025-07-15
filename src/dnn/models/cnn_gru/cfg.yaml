@@ -1,0 +1,75 @@
+DB: ./data/
+DB_all: spec_magnitude_2048_800_480/
+amsgrad: 1
+batch_size: 16
+comet_disable: 1
+dir_meta_dev: protocol/ASVspoof2017_dev.trl.txt
+dir_meta_eval: protocol/ASVspoof2017_train.trn.txt
+dir_meta_trn: protocol/ASVspoof2017_eval.trl.txt
+do_lr_dec: 0
+epoch: 5
+feat_dim: 1025
+gpu_idx:
+- 0
+lr: 0.0005
+lrdec: 0.2
+lrdec_milestones:
+- 120
+- 150
+model:
+  blocks:
+  - 1
+  - 2
+  - 2
+  - 2
+  filts:
+  - 16
+  - - 16
+    - 32
+  - - 32
+    - 64
+  - - 64
+    - 64
+  - - 64
+    - 128
+  - - 128
+    - 128
+  gru_node: 512
+  in_channels: 1
+  kernels:
+  - - 3
+    - 7
+  - - 3
+    - 7
+  - - 3
+    - 7
+  - - 3
+    - 7
+  - - 3
+    - 7
+  - - 3
+    - 7
+  nb_classes: 2
+  nb_fc_node: 64
+  nb_gru_layer: 1
+  strides:
+  - 1
+  - 1
+  - - 2
+    - 4
+  - - 2
+    - 4
+  - - 2
+    - 4
+  - - 2
+    - 4
+name: CNN_GRU
+nb_proc_db: 4
+nb_time: 120
+nesterov: 0
+opt_mom: 0.9
+optimizer: Adam
+pretrn_epoch: 2
+save_best_only: 0
+save_dir: ./test/
+wd: 0.0001

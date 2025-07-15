@@ -29,7 +29,7 @@ from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from torchcontrib.optim import SWA
 from utils import create_optimizer, seed_worker, set_seed, str_to_bool
-from prediction import predict
+from aasist.predict import predict
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
