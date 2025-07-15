@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import sys
 import time
 import tempfile
 import plotly.graph_objects as go
@@ -12,6 +13,9 @@ import torch
 from aasist.predict import predict as detect_ai_voice
 from dnn.predict import predict as detect_replayed_voice
 from pathlib import Path
+
+# Ensure the src directory is in the Python path
+sys.path.append(os.path.dirname(__file__))
 
 # Configure page
 st.set_page_config(
@@ -182,7 +186,6 @@ def predict_spoofing(audio_path):
                 Path(__file__).parent / "aasist" / "models" / "weights" / "AASIST.pth"
             )
             config_path = Path(__file__).parent / "aasist" / "config" / "AASIST.conf"
-            print(model_path, config_path)
             ai_result = detect_ai_voice(audio_path, model_path, config_path)
             results["ai_detection"] = ai_result
         except Exception as e:
@@ -198,11 +201,7 @@ def predict_spoofing(audio_path):
             config_path = (
                 Path(__file__).parent / "dnn" / "models" / "cnn_gru" / "cfg.yaml"
             )
-            replay_result = detect_replayed_voice(
-                audio_path,
-                "dnn/models/cnn_gru/model.pt",
-                "dnn/models/cnn_gru/cfg.yaml",
-            )
+            replay_result = detect_replayed_voice(audio_path, model_path, config_path)
             results["replay_detection"] = replay_result
         except Exception as e:
             errors.append(f"Replay detection error: {str(e)}")
