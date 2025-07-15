@@ -11,6 +11,7 @@ import librosa
 import torch
 from aasist.predict import predict as detect_ai_voice
 from dnn.predict import predict as detect_replayed_voice
+from pathlib import Path
 
 # Configure page
 st.set_page_config(
@@ -177,11 +178,12 @@ def predict_spoofing(audio_path):
     with st.spinner("Running AI voice detection..."):
         try:
             # AI voice detection (AASIST)
-            ai_result = detect_ai_voice(
-                audio_path,
-                "aasist/models/weights/AASIST.pth",
-                "aasist/config/AASIST.conf",
+            model_path = (
+                Path(__file__).parent / "aasist" / "models" / "weights" / "AASIST.pth"
             )
+            config_path = Path(__file__).parent / "aasist" / "config" / "AASIST.conf"
+            print(model_path, config_path)
+            ai_result = detect_ai_voice(audio_path, model_path, config_path)
             results["ai_detection"] = ai_result
         except Exception as e:
             errors.append(f"AI detection error: {str(e)}")
@@ -190,6 +192,12 @@ def predict_spoofing(audio_path):
     with st.spinner("Running replay voice detection..."):
         try:
             # Replay voice detection (CNN-GRU)
+            model_path = (
+                Path(__file__).parent / "dnn" / "models" / "cnn_gru" / "model.pt"
+            )
+            config_path = (
+                Path(__file__).parent / "dnn" / "models" / "cnn_gru" / "cfg.yaml"
+            )
             replay_result = detect_replayed_voice(
                 audio_path,
                 "dnn/models/cnn_gru/model.pt",

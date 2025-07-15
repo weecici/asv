@@ -4,6 +4,12 @@ A modern web-based user interface for detecting voice spoofing using two powerfu
 
 - **AASIST**: Advanced audio spoofing detection for AI-generated voices
 - **CNN-GRU**: Convolutional neural network with GRU for replay attack detection
+
+
+## Demo
+- Our online demo for Voice Spoofind Detection Project is available at: https://cs117-asv.streamlit.app/
+
+
 ## Features
 
 **Audio Input Options**
