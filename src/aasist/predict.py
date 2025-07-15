@@ -21,6 +21,8 @@ def predict(audio_path, model_path, config_path, device="cuda"):
         dict: Contains prediction result, confidence score, and raw output
     """
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     # Load configuration
     with open(config_path, "r") as f_json:
         config = json.loads(f_json.read())
