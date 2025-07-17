@@ -2,7 +2,7 @@
 
 A modern web-based user interface for detecting voice spoofing using two powerful frameworks:
 
-- **AASIST**: Advanced audio spoofing detection for AI-generated voices
+- **AASIST**: Advanced framework in audio spoofing detection for AI-generated voices
 - **CNN-GRU**: Convolutional neural network with GRU for replay attack detection
 
 
